@@ -26,37 +26,3 @@ function test() {
   echo "Testing ECHO!"
 }
 
-function scan {
-  trivy image $@
-}
-
-if [[ ($# -eq 0) || ($1 == "--help") || ($1 == "-h") ]]; then
-  # No commands or the --help flag passed and we'll show the usage instructions
-  usage
-fi
-
-KUBECTL_PARAM=()
-for opt in "$@"; do
-  case "${opt}" in
-    '--' )
-      shift
-      TRIVY_PARAM=( "$@" )
-      break
-      ;;
-    * )
-      if [ -n "$1" ]; then
-        KUBECTL_PARAM+=("$1")
-      fi
-      shift
-      ;;
-  esac
-done
-
-
-images=$(kubectl get "${KUBECTL_PARAM[@]}" -oyaml | sed -nE 's@[^\w]*image: ([a-zA-Z0-9/:])@\1@p' | uniq)
-while read -r image; do
-  if [ -n "$image" ]; then
-    scan "${TRIVY_PARAM[@]}" "$image"
-  fi
-done <<< "$images"
-
