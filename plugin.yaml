@@ -1,6 +1,6 @@
 name: "kubectl"
 repository: horeyes/trivy-plugin-kubectl
-version: "0.0.3"
+version: "0.1.0"
 usage: scan kubectl resources
 description: |-
   A Trivy plugin that scans the images of a kubernetes resource.
@@ -14,7 +14,7 @@ platforms:
   - selector: # optional
       os: linux
       arch: amd64
-    uri: https://github.com/horeyes/trivy-plugin-kubectl/releases/download/v0.0.3/trivy-kubectl.tar.gz
+    uri: https://github.com/horeyes/trivy-plugin-kubectl/releases/download/v0.1.0/trivy-kubectl.tar.gz
     bin: ./trivy-kubectl
   - selector:
       os: darwin
