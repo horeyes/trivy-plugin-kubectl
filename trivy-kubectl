@@ -22,8 +22,8 @@ EOS
   exit
 }
 
-function test {
-  echo "testing..."
+function test() {
+  console.log('Testing')
 }
 
 function scan {
