@@ -23,7 +23,7 @@ EOS
 }
 
 function test {
-console.log("Testing")
+  echo "testing..."
 }
 
 function scan {
